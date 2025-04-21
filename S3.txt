@@ -1,0 +1,91 @@
+﻿Amazon S3
+
+	  *Amazon Simple Storage Service (S3) is a highly scalable, durable, and secure object storage service provided by AWS. 
+	  *It enables you to store and retrieve virtually any amount of data—ranging from small text files to large media assets—from anywhere on the web.
+	  *S3 serves as the backbone for data lakes, backup and recovery, content distribution, big data analytics, and static website hosting.
+ 
+ ----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Buckets:-
+
+	  *Definition: A bucket is the top‑level container in S3. All objects (files) reside in buckets.
+	  *Uniqueness: Bucket names must be globally unique across all AWS accounts.
+	  *Limits: By default, an AWS account can create up to 100 buckets (soft limit, can be increased upon request).
+	  *Configuration: Each bucket can have its own region, versioning, encryption, logging, and lifecycle policies.
+
+
+  -----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Objects:-
+
+		*Definition: The individual files stored within buckets, comprised of:
+		*Key: The unique identifier (including path) within the bucket.
+		*Value: The data content itself (up to 5 TB per object).
+		*Metadata: User‑provided or system‑generated name/value pairs.
+		*Version ID: Assigned when versioning is enabled; otherwise a null version.
+		*Tags: Key/value labels for cost allocation or management.
+
+
+ ------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Storage Classes:-
+    
+	*S3 offers multiple storage classes to optimize cost for different access patterns:-
+
+     ->Standard: General‑purpose, low‑latency, frequently accessed data.
+     ->Intelligent‑Tiering: Automatically moves objects between access tiers based on usage patterns.
+     ->Standard‑IA (Infrequent Access): Lower cost for less frequently accessed data; retrieval fee applies.
+     ->One Zone‑IA: Like Standard‑IA but stored in a single Availability Zone—lower cost, less resilience.
+     ->Glacier Instant/Deep/Deep Archive: Archival storage with retrieval times ranging from minutes to hours at very low cost.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Access Control & Security:-
+    
+    *IAM Policies & Bucket Policies
+       
+	  ->IAM Policies: Attach to users, groups, or roles to grant or deny S3 actions (e.g., s3:PutObject, s3:GetObject) on resource ARNs.
+      ->Bucket Policies: Resource‑based policies attached directly to a bucket, enabling cross‑account or public access controls.
+
+    *Access Control Lists (ACLs)
+       
+	  ->Use Case: Legacy method for granting read/write permissions to individual AWS accounts or predefined groups (e.g., “AllUsers”).
+      ->Recommendation: Prefer IAM and bucket policies for more granular, maintainable controls.
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Versioning
+     
+	*Purpose: Protects against accidental deletes or overwrites by keeping multiple versions of an object.
+
+  Behavior:
+
+    *New uploads to the same key create new version IDs.
+    *Deletions add a delete marker, preserving previous versions.
+    *Can be suspended but not fully removed without deleting all versions.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Use Cases
+
+   *Static Website Hosting
+     ->Serve HTML, CSS, JavaScript, and media directly from S3 with custom domains and SSL via Amazon CloudFront.
+
+   *Data Lakes & Big Data Analytics
+     ->Ingest and store massive volumes of structured and unstructured data; integrate with AWS Glue, Athena, and EMR.
+
+   *Backup & Disaster Recovery
+    ->Maintain on‑demand or scheduled backups; archive to Glacier for long‑term retention at minimal cost.
+
+   *Application Media Storage
+    ->Store user‑generated content (images, videos) with presigned URLs for secure, time‑limited uploads/downloads.
+

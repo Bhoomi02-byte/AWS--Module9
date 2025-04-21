@@ -1,0 +1,51 @@
+﻿   Study over aws essential services and their implementation:-
+
+  1. Compute:-
+
+		i)Amazon EC2: Launch virtual servers to run applications.
+			Use: Hosting websites, apps, and backend services.​
+
+		ii)AWS Lambda: Run code without managing servers.
+           Use: Executing functions in response to events.​
+
+  2. Storage
+
+		i)Amazon S3: Store and retrieve any amount of data.
+		   Use: Storing files, backups, and static website content.​
+
+		ii)Amazon EBS: Block storage for EC2 instances.
+          Use: Providing persistent storage for applications.​
+
+   3.Databases
+
+		i)Amazon RDS: Managed relational databases.
+           Use: Running databases like MySQL, PostgreSQL, and SQL Server.​
+
+		ii)Amazon DynamoDB: Managed NoSQL database.
+           Use: Handling high-traffic applications with low-latency data access.​
+
+   4.Networking
+
+		i)Amazon VPC: Isolated virtual networks.
+          Use: Launching AWS resources in a secure network.​
+
+		ii)Elastic Load Balancing (ELB): Distribute traffic across multiple targets.
+          Use: Ensuring high availability and fault tolerance.​
+
+   5.Security
+
+	   i)AWS IAM: Manage user access and permissions.
+         Use: Controlling who can access AWS resources.​
+
+	   ii)AWS KMS: Manage encryption keys.
+         Use: Encrypting data stored in AWS services.​
+
+   6. Monitoring
+
+	  i)Amazon CloudWatch: Monitor AWS resources and applications.
+        Use: Tracking performance and setting alarms.​
+
+	  ii)AWS CloudTrail: Record AWS API calls.
+        Use: Auditing user activity and API usage.​
+
+
