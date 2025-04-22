@@ -1,0 +1,164 @@
+﻿Steps to deploy the backend-code on aws:
+
+-------------------------------------------------------------------------------------------
+
+   *Connection of EC2 instance:-
+
+ -------------------------------------------------------------------------------------------
+ An EC2 instance is basically a virtual server in Amazon’s cloud.
+
+   Step 1:- Go to the EC2 Dashboard
+
+	  a)Log in to your AWS Management Console.
+	  b)In the search bar, type EC2 and click on it.
+	  c)Click Launch Instance to creating a new virtual server.
+
+
+
+   Step 2:- Launch an Instance
+
+       a)Give the name of an instance
+	   b)In Amazon Machine Image, choose Amazon Linux 2023 AMI , lightweight linux distribution.
+	   c) Instance Type
+          Choose t2.micro:It’s eligible for the Free Tier.
+
+	   d) Key Pair (for SSH access)
+          Click “Create new key pair” → Choose RSA and download the .pem file.
+
+       e) Network Settings (Security Group)
+	     Allow SSH (port 22): Source: Your IP (for secure shell access)
+         Allow HTTP (port 80) or your app’s port (5000):  Anywhere (0.0.0.0/0) .
+         Allow outbound port 1433: EC2 instance needs to connect to a SQL Server (RDS) database.
+
+	   f)Review all settings and click Launch Instance.
+	   g)Go to the Instances tab:- Note the Public IPv4 address of your instance — we'll need it to connect via SSH.
+
+
+   Step 3:- SSH into Your EC2 Instance
+			  a)Open the terminal and navigate to the folder where your .pem file is located, then run this command:
+				chmod 400 your-key.pem
+
+			  b)Now, connect to the instance using this command:
+				 ssh -i "your-key.pem" ec2-user@<EC2_PUBLIC_IP>
+
+				   i)-i "your-key.pem": Specifies the identity file (your key).
+				  ii)ec2-user@: The default user for Amazon Linux.
+				 iii)@<EC2_PUBLIC_IP>: The IP address of your EC2 instance.
+
+
+   Step 4:-Install .NET 8 SDK:-
+          Using this command:-sudo dnf install dotnet-sdk-8.0 -y
+
+		  Check version:-
+		  dotnet --version
+
+
+   Step 5:- git initialize:-
+          i)sudo dnf install git -y
+		  ii)Clone the app
+			  git clone https://github.com/your-username/your-repo.git
+			  cd your-repo
+          iii)dotnet restore
+		  iv)dotnet build
+		   v)dotnet publish -c Release -o publish
+		   vi)dotnet run
+
+-----------------------------------------------------------------------------------
+
+  *Step-by-Step: Connect EC2 to RDS (SQL Server)
+
+-----------------------------------------------------------------------------------
+	Step 1: Make Sure RDS is Ready
+		  ->Go to RDS Console → Databases
+		  ->Select your DB
+          ->Copy the Endpoint (e.g., mydb.xxxxx.rds.amazonaws.com)
+          Make sure:
+		  ->Port is 1433
+          ->Database is in Available status
+          ->Public access is enabled 
+
+	Step 2:-Configure RDS Security Group
+           ->You need to allow EC2 to connect to the RDS instance.
+           ->Go to EC2 Console → Security Groups
+           ->Find the Security Group attached to the RDS
+           ->In Inbound Rules, add:
+           Type: MS SQL Server
+            Port: 1433
+            Source:
+            Option 1 (Best): Select the EC2 security group
+            Option 2: Use EC2's public IP/CIDR (172.31.0.0/16)
+
+	Step 3:-Add appsettings.json Manually in EC2
+	       ->Go to your project folder
+              cd /home/ec2-user/your-dotnet-app
+
+		   ->create appsettings.json file
+              sudo nano appsettings.json
+
+		   ->mydb.xxxxx.rds.amazonaws.com with your actual RDS endpoint.
+             mydb with your DB name.
+             admin and yourpassword with your credentials.
+
+		   ->Press Ctrl + S → Enter
+             Press Ctrl + X (to exit)
+
+		   ->Run the .net app
+		     dotnet run 
+
+
+
+-------------------------------------------------------------------------------------------------
+
+   *How to Create a SQL Server RDS Instance on AWS
+
+ ------------------------------------------------------------------------------------------------
+     Step 1: Go to RDS Console
+		 ->Go to the AWS Console → Search for RDS
+		 ->Click "Create database"
+ 
+     Step 2: Select Engine
+		->Choose Microsoft SQL Server
+		->Select Edition (e.g., SQL Server Express, Web, Standard, Enterprise)
+		->Click "Next"
+
+     Step 3: Settings
+		  ->DB instance identifier: my-sqlserver-db
+		  ->Master username: admin
+		  ->Master password: your-secure-password
+		  ->Confirm password
+
+     Step 4: DB Instance Class
+		->Choose instance type (for free tier: db.t3.micro)
+        ->Storage: 20 GiB (or as needed)
+
+     Step 5: Connectivity
+		->VPC: Default (or custom)
+        ->Public access: ✅ Yes (if you want to access from outside)
+        ->VPC security group:
+		  choose existing
+        ->Allow inbound on port 1433 (MS SQL) later
+
+     Step 6: Additional Configuration
+         ->DB name: yourdbname 
+		 ->Port: 1433
+         ->Backup, Monitoring, Logs – leave as default or adjust as needed
+
+      Step 7: Create Database
+         ->Click "Create database"
+         ->Wait 5–10 minutes for RDS to be available
+
+
+
+
+
+
+	
+
+
+
+
+   
+
+          
+
+   
