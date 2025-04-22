@@ -124,7 +124,18 @@
           ->Public access is enabled 
 
 
-	Step 2:-Configure RDS Security Group
+	Step 2: Connect the endpoint on mssql with username and password
+	      ->Add Connection String to appsettings.json
+			  {
+			  "ConnectionStrings": {
+				"DefaultConnection": "Server=mydb.xxxxx.rds.amazonaws.com,1433;Database=YourDbName;User Id=admin;Password=yourpassword;TrustServerCertificate=True;"
+			  }
+		     }
+		  ->dotnet ef database update
+		  ->and then run to test locally
+
+
+	Step 3:-Configure RDS Security Group
            ->You need to allow EC2 to connect to the RDS instance.
            ->Go to EC2 Console → Security Groups
            ->Find the Security Group attached to the RDS
@@ -137,7 +148,7 @@
 
 
 
-	Step 3:-Add appsettings.json Manually in EC2
+	Step 4:-Add appsettings.json Manually in EC2
 	       ->Go to your project folder
               cd /home/ec2-user/your-dotnet-app
 
