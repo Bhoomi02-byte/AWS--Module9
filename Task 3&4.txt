@@ -165,6 +165,9 @@
 		   ->Run the .net app
 		     dotnet run 
 
+        and localhost is running live with port and using public ipAddress with port:
+		 http://44.201.164.254:5000 this is the deployment link.
+
 
 
 
