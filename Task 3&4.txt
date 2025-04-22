@@ -77,6 +77,7 @@
           ->Database is in Available status
           ->Public access is enabled 
 
+
 	Step 2:-Configure RDS Security Group
            ->You need to allow EC2 to connect to the RDS instance.
            ->Go to EC2 Console → Security Groups
@@ -87,6 +88,8 @@
             Source:
             Option 1 (Best): Select the EC2 security group
             Option 2: Use EC2's public IP/CIDR (172.31.0.0/16)
+
+
 
 	Step 3:-Add appsettings.json Manually in EC2
 	       ->Go to your project folder
@@ -133,10 +136,10 @@
 
      Step 5: Connectivity
 		->VPC: Default (or custom)
-        ->Public access: ✅ Yes (if you want to access from outside)
+        ->Public access: Yes .
         ->VPC security group:
 		  choose existing
-        ->Allow inbound on port 1433 (MS SQL) later
+        ->Allow inbound on port 1433 (MS SQL) 
 
      Step 6: Additional Configuration
          ->DB name: yourdbname 

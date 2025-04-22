@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\bhoom\\source\\repos\\AWS--Module9\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\bhoom\\source\\repos\\AWS--Module9\\Task 3\u00264.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Task 3\u00264.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\bhoom\\source\\repos\\AWS--Module9\\Task5.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Task5.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
@@ -31,6 +35,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Task 3\u00264.txt",
+              "DocumentMoniker": "C:\\Users\\bhoom\\source\\repos\\AWS--Module9\\Task 3\u00264.txt",
+              "RelativeDocumentMoniker": "Task 3\u00264.txt",
+              "ToolTip": "C:\\Users\\bhoom\\source\\repos\\AWS--Module9\\Task 3\u00264.txt",
+              "RelativeToolTip": "Task 3\u00264.txt",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAFsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-04-22T08:57:13.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Task5.txt",
               "DocumentMoniker": "C:\\Users\\bhoom\\source\\repos\\AWS--Module9\\Task5.txt",
               "RelativeDocumentMoniker": "Task5.txt",
