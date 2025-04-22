@@ -1,46 +1,46 @@
 ﻿Steps to deploy the backend-code on aws:
 
--------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 
    *Connection of EC2 instance:-
 
- -------------------------------------------------------------------------------------------
+ ---------------------------------------------------------------------------------------
   An EC2 instance is basically a virtual server in Amazon’s cloud.
 
    Step 1:- Go to the EC2 Dashboard
 
-	  a)Log in to your AWS Management Console.
-	  b)In the search bar, type EC2 and click on it.
-	  c)Click Launch Instance to creating a new virtual server.
+	  ->Log in to your AWS Management Console.
+	  ->In the search bar, type EC2 and click on it.
+	  ->Click Launch Instance to creating a new virtual server.
 
 
 
    Step 2:- Launch an Instance
 
-       a)Give the name of an instance
+       ->Give the name of an instance
 
-	   b)In Amazon Machine Image, choose Amazon Linux 2023 AMI , lightweight linux distribution.
+	   ->In Amazon Machine Image, choose Amazon Linux 2023 AMI , lightweight linux distribution.
 
-	   c) Instance Type
+	   ->Instance Type
           Choose t2.micro:It’s eligible for the Free Tier.
 
-	   d) Key Pair (for SSH access)
+	   ->Key Pair (for SSH access)
           Click “Create new key pair” → Choose RSA and download the .pem file.
 
-       e) Network Settings (Security Group)
+       ->Network Settings (Security Group)
 	     Allow SSH (port 22): Source: Your IP (for secure shell access)
          Allow HTTP (port 80) or your app’s port (5000):  Anywhere (0.0.0.0/0) .
          Allow outbound port 1433: EC2 instance needs to connect to a SQL Server (RDS) database.
 
-	   f)Review all settings and click Launch Instance.
-	   g)Go to the Instances tab:- Note the Public IPv4 address of your instance — we'll need it to connect via SSH.
+	   ->Review all settings and click Launch Instance.
+	   ->Go to the Instances tab:- Note the Public IPv4 address of your instance — we'll need it to connect via SSH.
 
 
    Step 3:- SSH into Your EC2 Instance
-			  a)Open the terminal and navigate to the folder where your .pem file is located, then run this command:
+			  ->Open the terminal and navigate to the folder where your .pem file is located, then run this command:
 				chmod 400 your-key.pem
 
-			  b)Now, connect to the instance using this command:
+			  ->Now, connect to the instance using this command:
 				 ssh -i "your-key.pem" ec2-user@<EC2_PUBLIC_IP>
 
 				   i)-i "your-key.pem": Specifies the identity file (your key).
@@ -49,10 +49,9 @@
 
 
    Step 4:-Install .NET 8 SDK:-
-          Using this command:-sudo dnf install dotnet-sdk-8.0 -y
-
-		  Check version:-
-		  dotnet --version
+          ->Using this command:-sudo dnf install dotnet-sdk-8.0 -y
+          ->Check version:-
+		  ->dotnet --version
 
 
    Step 5:- git initialize:-
@@ -67,11 +66,11 @@
 
 
 
- -------------------------------------------------------------------------------------------------
+ ---------------------------------------------------------------------------------------
 
    *then Create a SQL Server RDS Instance on AWS
 
- ------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------
 
      Step 1: Go to RDS Console
 		 ->Go to the AWS Console → Search for RDS
@@ -131,6 +130,9 @@
 				"DefaultConnection": "Server=mydb.xxxxx.rds.amazonaws.com,1433;Database=YourDbName;User Id=admin;Password=yourpassword;TrustServerCertificate=True;"
 			  }
 		     }
+		  ->mydb.xxxxx.rds.amazonaws.com with your actual RDS endpoint.
+          -> mydb with your DB name.
+          -> admin and yourpassword with your credentials.
 		  ->dotnet ef database update
 		  ->and then run to test locally
 
@@ -150,22 +152,19 @@
 
 	Step 4:-Add appsettings.json Manually in EC2
 	       ->Go to your project folder
-              cd /home/ec2-user/your-dotnet-app
+              using this command :-*cd /home/ec2-user/your-dotnet-app*
 
-		   ->create appsettings.json file
-              sudo nano appsettings.json
+           ->sudo chmod 777 Module-5/ :- it gives full access for read, write and delete etc.
 
-		   ->mydb.xxxxx.rds.amazonaws.com with your actual RDS endpoint.
-             mydb with your DB name.
-             admin and yourpassword with your credentials.
+		   ->Command- *sudo nano appsettings.json*
 
-		   ->Press Ctrl + S → Enter
-             Press Ctrl + X (to exit)
+		   ->paste the content of appsettings.json file 
+           ->Press Ctrl + S → Enter
+           ->Press Ctrl + X (to exit)
+           ->Run the .net app
+		   ->dotnet run 
 
-		   ->Run the .net app
-		     dotnet run 
-
-        and localhost is running live with port and using public ipAddress with port:
+         localhost is running live with port and using public ipAddress with port:
 		 http://44.201.164.254:5000 this is the deployment link.
 
 
