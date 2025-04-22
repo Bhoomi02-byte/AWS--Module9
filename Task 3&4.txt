@@ -5,7 +5,7 @@
    *Connection of EC2 instance:-
 
  -------------------------------------------------------------------------------------------
- An EC2 instance is basically a virtual server in Amazon’s cloud.
+  An EC2 instance is basically a virtual server in Amazon’s cloud.
 
    Step 1:- Go to the EC2 Dashboard
 
@@ -18,7 +18,9 @@
    Step 2:- Launch an Instance
 
        a)Give the name of an instance
+
 	   b)In Amazon Machine Image, choose Amazon Linux 2023 AMI , lightweight linux distribution.
+
 	   c) Instance Type
           Choose t2.micro:It’s eligible for the Free Tier.
 
@@ -60,12 +62,56 @@
 			  cd your-repo
           iii)dotnet restore
 		  iv)dotnet build
-		   v)dotnet publish -c Release -o publish
-		   vi)dotnet run
+		  v)dotnet publish -c Release -o publish
+		  vi)dotnet run
+
+
+
+ -------------------------------------------------------------------------------------------------
+
+   *then Create a SQL Server RDS Instance on AWS
+
+ ------------------------------------------------------------------------------------------------
+
+     Step 1: Go to RDS Console
+		 ->Go to the AWS Console → Search for RDS
+		 ->Click "Create database"
+ 
+     Step 2: Select Engine
+		->Choose Microsoft SQL Server
+		->Select Edition (e.g., SQL Server Express, Web, Standard, Enterprise)
+		->Click "Next"
+
+     Step 3: Settings
+		  ->DB instance identifier: my-sqlserver-db
+		  ->Master username: admin
+		  ->Master password: your-secure-password
+		  ->Confirm password
+
+     Step 4: DB Instance Class
+		->Choose instance type (for free tier: db.t3.micro)
+        ->Storage: 20 GiB (or as needed)
+
+     Step 5: Connectivity
+		->VPC: Default (or custom)
+        ->Public access: Yes .
+        ->VPC security group:
+		  choose existing
+        ->Allow inbound on port 1433 (MS SQL) 
+
+     Step 6: Additional Configuration
+         ->DB name: yourdbname 
+		 ->Port: 1433
+         ->Backup, Monitoring, Logs – leave as default or adjust as needed
+
+      Step 7: Create Database
+         ->Click "Create database"
+         ->Wait 5–10 minutes for RDS to be available
+
 
 -----------------------------------------------------------------------------------
 
-  *Step-by-Step: Connect EC2 to RDS (SQL Server)
+  * Then Connect EC2 to RDS (SQL Server)
 
 -----------------------------------------------------------------------------------
 	Step 1: Make Sure RDS is Ready
@@ -110,45 +156,6 @@
 
 
 
--------------------------------------------------------------------------------------------------
-
-   *How to Create a SQL Server RDS Instance on AWS
-
- ------------------------------------------------------------------------------------------------
-     Step 1: Go to RDS Console
-		 ->Go to the AWS Console → Search for RDS
-		 ->Click "Create database"
- 
-     Step 2: Select Engine
-		->Choose Microsoft SQL Server
-		->Select Edition (e.g., SQL Server Express, Web, Standard, Enterprise)
-		->Click "Next"
-
-     Step 3: Settings
-		  ->DB instance identifier: my-sqlserver-db
-		  ->Master username: admin
-		  ->Master password: your-secure-password
-		  ->Confirm password
-
-     Step 4: DB Instance Class
-		->Choose instance type (for free tier: db.t3.micro)
-        ->Storage: 20 GiB (or as needed)
-
-     Step 5: Connectivity
-		->VPC: Default (or custom)
-        ->Public access: Yes .
-        ->VPC security group:
-		  choose existing
-        ->Allow inbound on port 1433 (MS SQL) 
-
-     Step 6: Additional Configuration
-         ->DB name: yourdbname 
-		 ->Port: 1433
-         ->Backup, Monitoring, Logs – leave as default or adjust as needed
-
-      Step 7: Create Database
-         ->Click "Create database"
-         ->Wait 5–10 minutes for RDS to be available
 
 
 
